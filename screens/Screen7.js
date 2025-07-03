@@ -10,6 +10,8 @@ import {
 import { AntDesign, Feather, Ionicons, FontAwesome } from "@expo/vector-icons";
 import { dh_w, dw_w } from "./Dimension";
 
+
+
 const Screen7 = () => {
     return (
         <View>
@@ -39,32 +41,34 @@ const Screen7 = () => {
                             {/* Title */}
                             <Text style={styles.parkTitle}>Lorem Ipsum{"\n"}National Park</Text>
 
-                            {/* Rating + Friends */}
-                            <View style={styles.rowBetween}>
-                                {/* Stars */}
-                                <View style={styles.starRow}>
-                                    {[1, 2, 3, 4, 5].map((i) => (
-                                        <FontAwesome key={i} name="star" size={16} color="#f1c40f" />
-                                    ))}
+                            <View style={styles.des_cart}>
+                                {/* Rating + Friends */}
+                                <View style={styles.rowBetween}>
+                                    {/* Stars */}
+                                    <View style={styles.starRow}>
+                                        {[1, 2, 3, 4, 5].map((i) => (
+                                            <FontAwesome key={i} name="star" size={16} color="#f1c40f" />
+                                        ))}
+                                    </View>
+                                    {/* Friends */}
+                                    <View style={styles.friendsRow}>
+                                        <Image source={require("../assets/chair2.webp")} style={styles.avatar} />
+                                        <Image source={require("../assets/mejores-muebles-de-oficina.webp")} style={styles.avatar} />
+                                        <Text style={styles.friendCount}>+12 Friends</Text>
+                                    </View>
                                 </View>
-                                {/* Friends */}
-                                <View style={styles.friendsRow}>
-                                    <Image source={require("../assets/chair2.webp")} style={styles.avatar} />
-                                    <Image source={require("../assets/mejores-muebles-de-oficina.webp")} style={styles.avatar} />
-                                    <Text style={styles.friendCount}>+12 Friends</Text>
-                                </View>
+
+                                {/* Description */}
+                                <Text style={styles.description}>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh
+                                    euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                </Text>
+
+                                {/* Button */}
+                                <TouchableOpacity style={styles.bookBtn}>
+                                    <Text style={styles.bookBtnText}>BOOK NOW</Text>
+                                </TouchableOpacity>
                             </View>
-
-                            {/* Description */}
-                            <Text style={styles.description}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh
-                                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                            </Text>
-
-                            {/* Button */}
-                            <TouchableOpacity style={styles.bookBtn}>
-                                <Text style={styles.bookBtnText}>BOOK NOW</Text>
-                            </TouchableOpacity>
 
                             {/* Bottom Tabs */}
                             <View style={styles.bottomTabs}>
@@ -86,27 +90,29 @@ export default Screen7
 const styles = StyleSheet.create({
     bgImage: {
         flex: 1,
+        minHeight: dh_w,
     },
     overlay: {
         flex: 1,
         backgroundColor: "rgba(0,0,0,0.6)",
-        padding: 20,
+        // padding: 20,
         paddingTop: 50,
     },
     topRow: {
         flexDirection: "row",
         justifyContent: "space-between",
-        marginBottom: 25,
+        // marginBottom: 25,
     },
     sec_cart: {
-        height:550,
-        position:'absolute',
-        bottom:0,
-        right:0,
-        left:0, 
-        padding:20,
-        justifyContent:'center',
-        alignItems:'center'
+        height: 550,
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        left: 0,
+        marginBottom: 0,
+        // padding: 20,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     galleryRow: {
         flexDirection: "row",
@@ -117,11 +123,11 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 8,
-        borderWidth:1,
-        borderColor:'#ffffffa2',
-    overflow:'hidden',
-    opacity:.8,
-    
+        borderWidth: 1,
+        borderColor: '#ffffffa2',
+        overflow: 'hidden',
+        opacity: .8,
+
     },
     moreBox: {
         width: 50,
@@ -130,10 +136,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#00c853a1",
         justifyContent: "center",
         alignItems: "center",
-         borderWidth:1,
-        borderColor:'#ffffffa2',
-    overflow:'hidden',
-    opacity:.8,
+        borderWidth: 1,
+        borderColor: '#ffffffa2',
+        overflow: 'hidden',
+        opacity: .8,
     },
     parkTitle: {
         fontSize: 22,
@@ -141,21 +147,28 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginBottom: 15,
     },
+    des_cart: {
+        backgroundColor: '#111425',
+        height: 280,
+        // position:'absolute',
+        // bottom:0,
+    },
     rowBetween: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        
+
     },
     starRow: {
         flexDirection: "row",
         gap: 4,
+        backgroundColor: ''
     },
     friendsRow: {
         flexDirection: "row",
         alignItems: "center",
         gap: 4,
-        marginLeft:70,
+        marginLeft: 70,
     },
     avatar: {
         width: 28,
@@ -189,10 +202,10 @@ const styles = StyleSheet.create({
     bottomTabs: {
         position: "absolute",
         bottom: -2,
-        minWidth:dw_w,
+        minWidth: dw_w,
         height: 70,
         borderTopLeftRadius: 26,
-        borderTopRightRadius:26,
+        borderTopRightRadius: 26,
         backgroundColor: "#111425",
         flexDirection: "row",
         justifyContent: "space-around",

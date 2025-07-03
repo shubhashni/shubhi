@@ -13,7 +13,7 @@ import { Feather, Entypo } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { dh_w, dw_w } from "./Dimension";
 import { SafeAreaView } from "react-native-safe-area-context";
-const Screen5 = () => {
+const Screen5 = ({navigation}) => {
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
     

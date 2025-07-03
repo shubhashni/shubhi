@@ -15,6 +15,7 @@ import Screen4 from "./screens/Screen4";
 import Screen5 from "./screens/Screen5";
 import Screen6 from "./screens/Screen6";
 import Screen7 from "./screens/Screen7";
+import Screen8 from "./screens/Screen8";
 
 
 
@@ -24,7 +25,9 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
      <NavigationContainer>
-      <Stack.Navigator initialRouteName="Screen1">
+      {/* <Stack.Navigator initialRouteName="Screen1"> */}
+       <Stack.Navigator initialRouteName="Screen8">
+        <Stack.Screen options={{headerShown:false}} name="Screen8" component={Screen8} />
         <Stack.Screen options={{headerShown:false}} name="Screen1" component={Screen1} />
         <Stack.Screen options={{headerShown:false}} name="Screen2" component={Screen2} />
         <Stack.Screen options={{headerShown:false}} name="Screen3" component={Screen3} />

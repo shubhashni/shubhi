@@ -139,29 +139,33 @@ export default function Screen1({ navigation }) {
       </View>
 
       {/* Horizontal Cards */}
-      <ScrollView horizontal>
-        {arr.map((i, e) => (
-          <View key={e} style={styles.viewImg}>
+      <ScrollView horizontal style={styles.mainCart_view} showsHorizontalScrollIndicator={false}>
+        {arr.map((item, index) => (
+          <View key={index} style={styles.viewImg_cart}>
             <ImageBackground
-              borderRadius={16}
+              source={item.img}
               style={styles.image}
-              source={i.img}
+              borderRadius={16}
             >
               <TouchableOpacity
-                onPress={() => Alert.alert("Heart")}
                 style={styles.heart_icon}
+                onPress={() => Alert.alert("Heart")}
               >
-                <AntDesign name="heart" size={14} color="white" />
+                <AntDesign name="heart" size={16} color="white" />
               </TouchableOpacity>
             </ImageBackground>
-            <View style={{ padding: 10 }}>
-              <Text style={styles.card_title}>{i.title}</Text>
-              <Text style={styles.card_Sub_title}>{i.sub_title}</Text>
-            </View>
-            <View style={styles.cart_price}>
-              <Text>{i.price}</Text>
-              <View style={styles.cart_plus_icon}>
-                <Entypo name="circle-with-plus" size={28} color="black" />
+
+            <View style={styles.cartDes}>
+              <View style={styles.description}>
+                <Text style={styles.card_title}>{item.title}</Text>
+                <Text style={styles.card_Sub_title}>{item.sub_title}</Text>
+              </View>
+
+              <View style={styles.cart_price}>
+                <Text style={styles.card_price_text}>{item.price}</Text>
+                <TouchableOpacity style={styles.cart_plus_icon}>
+                  <Entypo name="circle-with-plus" size={28} color="black" />
+                </TouchableOpacity>
               </View>
             </View>
           </View>
@@ -170,25 +174,31 @@ export default function Screen1({ navigation }) {
 
       <Text style={styles.BS_txt}>Best Selling</Text>
 
-      {/* Bottom Cart */}
       <View style={styles.bottom_cart}>
+        {/* Image Section */}
         <View style={styles.BC_img}>
           <Image
-            source={require("../assets/simple-work-space-cozy-studio-ap.webp")}
-            style={styles.image}
+            source={require("../assets/mejores-muebles-de-oficina.webp")}
+            style={styles.bc_cart_image}
+            resizeMode="cover"
           />
         </View>
+
+        {/* Text Section */}
         <View style={styles.BC_text}>
           <Text style={styles.card_title}>Minimal Chair</Text>
           <Text style={styles.card_Sub_title}>Learn About</Text>
-          <Text>$125.00</Text>
+          <Text style={styles.card_price}>$125.00</Text>
         </View>
-        <View style={styles.BC_arow_icon}>
+
+        {/* Arrow Icon Section */}
+        <View style={styles.BC_arrow_icon}>
           <TouchableOpacity onPress={() => navigation.navigate("Screen2")}>
-            <AntDesign name="arrowright" size={20} color="white" />
+            <AntDesign name="arrowright" size={22} color="white" />
           </TouchableOpacity>
         </View>
       </View>
+
     </SafeAreaView>
   );
 }
@@ -277,43 +287,65 @@ const styles = StyleSheet.create({
     fontFamily: "Baumans-Regular",
     fontSize: 24,
   },
-  viewImg: {
-    backgroundColor: "white",
-    height: 320,
-    padding: 11,
-    marginBottom: 20,
-    borderRadius: 27,
-    marginLeft: 17,
-    elevation: 3,
+  mainCart_view: {
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+  },
+  viewImg_cart: {
+    width: 220,
+    marginRight: 26,
+    backgroundColor: "#fff",
+    borderRadius: 16,
+    overflow: "hidden",
+    elevation: 4,
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    padding: 12
   },
   image: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "cover",
+    height: 180,
+    justifyContent: "flex-end",
+    padding: 8,
   },
   heart_icon: {
-    width: 24,
-    height: 24,
     position: "absolute",
-    right: 10,
-    top: 10,
-    backgroundColor: "#fd6a67",
-    borderRadius: 12,
-    justifyContent: "center",
-    alignItems: "center",
+    top: 8,
+    right: 8,
+    backgroundColor: "#fc6969",
+    padding: 6,
+    borderRadius: 20,
+  },
+  cartDes: {
+    flexDirection: "column",
+    justifyContent: "space-between",
+    paddingVertical: 16,
+  },
+  description: {
+    paddingHorizontal: 10,
   },
   card_title: {
     fontSize: 16,
     fontWeight: "bold",
+    color: "#333",
   },
   card_Sub_title: {
-    color: "#878994",
+    fontSize: 13,
+    color: "#666",
+    marginTop: 2,
   },
   cart_price: {
-    flexDirection: "row",
-    alignItems: "center",
+    marginTop: 8,
     paddingHorizontal: 10,
+    flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+  },
+  card_price_text: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  cart_plus_icon: {
+    paddingLeft: 8,
   },
   BS_txt: {
     margin: 20,
@@ -324,49 +356,53 @@ const styles = StyleSheet.create({
   bottom_cart: {
     flexDirection: "row",
     alignItems: "center",
-    marginHorizontal: 20,
-    justifyContent: "space-between",
-    padding: 10,
     backgroundColor: "#fff",
-    borderRadius: 10,
-    elevation: 2,
-    marginVertical: 8,
+    padding: 12,
+    borderRadius: 16,
+    margin: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
   },
   BC_img: {
-    width: 70,
+    width: 60,
     height: 60,
-    marginRight: 20,
-    borderRadius: 10,
+    borderRadius: 12,
     overflow: "hidden",
+    marginRight: 12,
+  },
+  bc_cart_image: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 12,
   },
   BC_text: {
     flex: 1,
     justifyContent: "center",
   },
-  BC_arow_icon: {
-    width: 30,
-    height: 30,
-    backgroundColor: "#242a3c",
-    marginRight: 20,
-    borderRadius: 8,
-    elevation: 3,
-    justifyContent: "center",
-    alignItems: "center",
+  card_title: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#111",
   },
-  user_icon_p: {
-    width: 30,
-    height: 30,
-    backgroundColor: "#111",
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
+  card_Sub_title: {
+    fontSize: 13,
+    color: "#ccc",
+    marginVertical: 2,
   },
-  user_icon: {
-    fontSize: 11,
+  card_price: {
+    fontSize: 14,
+    fontWeight: "bold",
     color: "#fff",
   },
-  cart_plus_icon: {
-    padding: 2,
+  BC_arrow_icon: {
+    backgroundColor: "#333",
+    padding: 8,
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center",
   },
   side_menu: {
     position: "absolute",

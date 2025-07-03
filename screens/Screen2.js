@@ -12,10 +12,6 @@ import Feather from "@expo/vector-icons/Feather";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { dh, dh_w, dw } from "./Dimension";
 
-
-
-
-
 export default function Screen2({navigation}) {
   return (
     <View style={{minHeight:dh_w}} >
@@ -92,7 +88,7 @@ export default function Screen2({navigation}) {
 
        
       </View>
-       <TouchableOpacity style={styles.bottom_btn}>
+       <TouchableOpacity onPress={()=>{ navigation.navigate('Screen3')}} style={styles.bottom_btn}>
             <View style={styles.pluse_Icon}>
                 <AntDesign name="plus" size={24} color="white" />
             </View>
